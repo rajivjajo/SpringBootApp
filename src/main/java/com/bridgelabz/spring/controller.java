@@ -1,16 +1,19 @@
 package com.bridgelabz.spring;
-import org.apache.logging.log4j.message.StringFormattedMessage;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
-
-    @RestController
-    public class controller {
-        @RequestMapping(value = "/message", method = RequestMethod.GET)
-        public String message() {
-            return "Hello World!";
-        }
+@Controller
+public class controller {
+    @GetMapping("/web")
+    public String hello(){
+        return "hello";
     }
+
+    @GetMapping("/web/message")
+    public String message(Model model){
+        model.addAttribute("message", "This is a custom message.");
+        return "message";
+    }
+}
 
